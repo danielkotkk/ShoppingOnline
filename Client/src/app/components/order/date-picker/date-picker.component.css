@@ -1,0 +1,9 @@
+.example-custom-date--orange-class {
+    background: orange;
+    border-radius: 100%;
+}
+
+.example-custom-date--red-class {
+    background: red !important;
+    border-radius: 100%;
+}

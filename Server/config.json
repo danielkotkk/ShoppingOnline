@@ -1,0 +1,9 @@
+{
+    "jwt": {
+        "secretKey": "ItsOurSecret",
+        "adminSecretKey": "BeingAdminIsTheBest"
+    },
+    "mongodb": {
+        "connStr": "mongodb://localhost:27017/ShoppingOnline"
+    }
+}

@@ -1,0 +1,179 @@
+<app-navbar></app-navbar>
+<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="50%">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="identityForm">
+                <h3 class="authTitle">Register</h3>
+                <form [formGroup]="identityForm">
+                    <ng-template matStepLabel>Identity</ng-template>
+                    <mat-form-field>
+                        <mat-label>Identity number</mat-label>
+                        <mat-error *ngIf="user.identity && isIdentityExist">Identity already exists!</mat-error>
+                        <mat-error *ngIf="!user.identity || user.identity.length !== 9"> Must contain 9 digits
+                        </mat-error>
+                        <input type="text" matInput class="input" name="identity" [(ngModel)]="user.identity"
+                            formControlName="identity" required pattern="^\d{9}$" (keyup)="checkIdentityExistence()">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <mat-error>Enter valid email</mat-error>
+                        <input type="email" matInput class="input" name="email" [(ngModel)]="user.email"
+                            formControlName="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <mat-error *ngIf="user.password && user.password.length < 6">
+                            Minimum password length is 6
+                        </mat-error>
+                        <mat-error>{{!user.password ? "Enter password" : ""}}</mat-error>
+
+                        <input type="password" matInput class="input" minlength="6" [(ngModel)]="user.password"
+                            name="password" formControlName="password" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Confirm password</mat-label>
+                        <mat-error *ngIf="identityForm.hasError('notSame')">
+                            Passwords do not match
+                        </mat-error>
+                        <mat-error *ngIf="(!identityForm.hasError('notSame'))">
+                            Re-enter your password</mat-error>
+                        <input type="password" matInput class="input" name="confirmPassword"
+                            [(ngModel)]="confirmPassword" formControlName="confirmPassword"
+                            [errorStateMatcher]="matcher" required>
+                    </mat-form-field>
+                    <br>
+                    <button class="nextBtn" mat-button matStepperNext (click)="validateConfirmPassword()"
+                        mat-button>Next</button>
+
+                    <div class="bottomForm">
+                        <div class="registerHr">
+                        </div>
+                        <div class="linkToLoginPage">
+                            <a routerLink="/">Already Member?</a>
+                        </div>
+                        <div class="registerHr"></div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="addressForm" label="Address">
+                <form [formGroup]="addressForm">
+                    <mat-form-field>
+                        <mat-label>City</mat-label>
+                        <mat-error>Choose your city</mat-error>
+                        <mat-select [(ngModel)]="user.city" class="input" required name="city" formControlName="city"
+                            required>
+                            <mat-option *ngFor="let city of cities" [value]="city">
+                                {{city}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Street</mat-label>
+                        <mat-error
+                            *ngIf="addressForm.controls.street.hasError('whitespace') && !addressForm.controls.street.hasError('required')">
+                            Length must be minimum of
+                            2 chars</mat-error>
+                        <mat-error *ngIf="addressForm.controls.firstName.hasError('required')">Enter your street address
+                        </mat-error>
+                        <mat-error></mat-error>
+                        <input type="text" matInput class="input" name="street" [(ngModel)]="user.street"
+                            formControlName="street" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <mat-error *ngIf="addressForm.controls.firstName.hasError('required')">Enter your first name
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addressForm.controls.firstName.hasError('whitespace') && !addressForm.controls.firstName.hasError('required')">
+                            Length must be minimum
+                            of 2 chars</mat-error>
+                        <input type="text" matInput class="input" name="firstName" [(ngModel)]="user.firstName"
+                            formControlName="firstName" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Last name</mat-label>
+                        <mat-error *ngIf="addressForm.controls.lastName.hasError('required')">Enter your last name
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addressForm.controls.lastName.hasError('whitespace') && !addressForm.controls.lastName.hasError('required')">
+                            Length must be minimum
+                            of 2 chars</mat-error>
+                        <input type="text" matInput class="input" name="lastName" [(ngModel)]="user.lastName"
+                            formControlName="lastName" required>
+                    </mat-form-field>
+                    <br>
+                    <div>
+                        <button class="nextBtn btnMargin" mat-button matStepperPrevious>Back</button>
+                        <button class="nextBtn" mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p class="finishText">Congratulations, You are successfully finished the steps</p>
+                <p class="finishText">Click on the finish button to finish and continue</p>
+                <div>
+                    <button mat-button class="nextBtn btnMargin" matStepperPrevious>Back</button>
+                    <button mat-button class="nextBtn btnMargin"
+                        (click)="stepper.reset();validateConfirmPassword()">Reset</button>
+                    <button mat-button class="nextBtn" (click)="register()">Finish</button>
+                </div>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+    </div>
+</div>
+
+<!-- 
+<div class="register">
+    <div class="login-wrap registerPosition">
+        <div class="login-html registerContainerPadding">
+            <h3 class="authTitle registerTitle">Register</h3>
+            <div class="login-form">
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label class="label">Username Or Email</label>
+                        
+                    </div>
+                    <div class="group">
+                        <label class="label">Password</label>
+                        <input maxlength="100" minlength="3" type="password" class="input" [(ngModel)]="user.password">
+                    </div>
+                    <div class="group">
+                        <label class="label">First name</label>
+                        <input maxlength="100" minlength="3" type="text" class="input" [(ngModel)]="user.firstName">
+                    </div>
+                    <div class="group">
+                        <label class="label">Last name</label>
+                        <input type="text" class="input" [(ngModel)]="user.lastName">
+                    </div>
+                    <div class="group">
+                        <label class="label">Identity</label>
+                        <input type="text" class="input" [(ngModel)]="user.identity">
+                    </div>
+                    <div class="group">
+                        <label class="label">City</label>
+                        <input type="text" maxlength=100 minlength=3 class="input" [(ngModel)]="user.city">
+                    </div>
+                    <div class="group">
+                        <label class="label">Street</label>
+                        <input type="text" class="input" [(ngModel)]="user.street">
+                    </div>
+                    <div class="group signUpBtn">
+                        <button type="button" class="button" (click)="register()">Sign up</button>
+                    </div>
+                    <div class="registerHr"></div>
+                    <div class="linkToLoginPage">
+                        <a routerLink="/login">Already Member?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

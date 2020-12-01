@@ -1,0 +1,229 @@
+html, body {
+    background-image: url("./assets/images/background-image/Webp.net-resizeimage.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    background-position: bottom;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: x-large;
+    box-sizing: border-box;
+}
+
+.swal2-title #swal2-title {
+    font-size: 400px!important;
+}
+
+.mat-h2, .mat-title, .mat-typography h2 {
+    font: bold 30px/32px Roboto, "Helvetica Neue", sans-serif!important;
+}
+
+.swal2-content {
+    font-size: 1em!important;
+}
+
+.downloadReceiptBtn {
+    border: 0;
+    font-family: inherit;
+    background-color: transparent;
+    padding-bottom: 5px;
+    cursor: pointer;
+    display: inline-block;
+    padding-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #575757;
+}
+
+.downloadReceiptBtn::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #575757;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translate3d(0, 0, 0);
+    transition: transform .3s ease-out, opacity .3s ease-out;
+}
+
+.downloadReceiptBtn:hover::after {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+}
+
+.mat-dialog-container {
+    border: 3px solid black!important;
+}
+
+.mat-label {
+    border: orange!important;
+    color: orange!important;
+}
+
+@font-face {
+    font-family: titleFont;
+    src: url("/assets/fonts/Galada-Regular.ttf");
+}
+
+@font-face {
+    font-family: bodyFont;
+    src: url("/assets/fonts/RobotoMono-Italic-VariableFont_wght.ttf");
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+    color: white;
+}
+
+.mat-stepper-vertical-line::before {
+    border-color: white;
+}
+
+.mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+    color: white;
+}
+
+.mat-step-header .mat-step-icon {
+    background: white;
+    color: black;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: white;
+}
+
+.mat-form-field-ripple {
+    background-color: white;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+}
+
+.mat-stepper-horizontal-line {
+    border-color: white;
+}
+
+.mat-horizontal-stepper-header-container {
+    padding-top: 2%;
+    margin-bottom: 3%;
+}
+
+.mat-select-value {
+    color: white;
+}
+
+.mat-select-arrow {
+    color: white;
+}
+
+.mat-card-img {
+    width: 200px;
+}
+
+.mat-drawer, .mat-drawer-container {
+    background: transparent;
+}
+
+/* Units Dialog CSS Load before HTML */
+
+.unitsField.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background: black;
+}
+
+.unitsField.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: black;
+}
+
+.unitsField.mat-form-field.mat-focused .mat-form-field-label {
+    color: #3f51b5!important;
+}
+
+/* Order page */
+
+.alignTop.mat-grid-tile .mat-figure {
+    align-items: baseline;
+}
+
+.cityField.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background: white;
+}
+
+.cityField .mat-form-field-label {
+    color: white;
+}
+
+.dateField .mat-datepicker-toggle {
+    color: white;
+}
+
+.creditCardField .mat-form-field-label {
+    color: white;
+}
+
+.creditCardField.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background: white;
+}
+
+.creditCardHint.mat-hint {
+    color: white;
+}
+
+/* Add Product */
+
+.addProductCategoryField .mat-form-field-label {
+    color: white;
+}
+
+.addProductCategoryField.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background-color: white;
+}
+
+.addProductNameField input.mat-input-element {
+    color: white;
+}
+
+.addProductPriceField input.mat-input-element {
+    color: white;
+}
+
+/* Update Product */
+
+.updateProductNameField input.mat-input-element {
+    color: white;
+}
+
+.updatePriceField input.mat-input-element {
+    color: white;
+}
+
+.updateCategoryField .mat-form-field-label {
+    color: white;
+}
+
+.updateCategoryField.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background-color: white;
+}
+
+.mat-card-image:first-child {
+    width: 182px;
+    height: 182px;
+    margin-top: 0!important;
+}
+.mat-card-image{
+    margin: 0!important;
+}
+.dateField .cdk-text-field-autofill-monitored:not(:-webkit-autofill){
+    color: white;
+}
+.creditInputField .cdk-text-field-autofill-monitored:not(:-webkit-autofill){
+    color: white;
+}
+.orderStreetField .cdk-text-field-autofill-monitored:not(:-webkit-autofill){
+    color: white;
+}

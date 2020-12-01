@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+<h1 class="pageTitle">Admin Page</h1>
+<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="30%">
+        <div class="cartContainer" *ngIf="!showAddForm && !productToUpdate">
+            <div>
+                <div class="betweenContainerAndCart">
+                    <div>
+                        <header id="title">
+                            <h1 class="cartTitle">Shopping Cart</h1>
+                            <h6>Customer Cart Example </h6>
+                        </header>
+                        <div id="page">
+                            <table id="cart">
+                                <thead>
+                                    <tr>
+                                        <th class="photo">Photo</th>
+                                        <th class="qty">Qty</th>
+                                        <th class="cartProductName">Product</th>
+                                        <th class="total">Total</th>
+                                        <th class="fifth">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="product">
+                                        <td><img src="assets/images/cucmber-cart-example/cucumber.png" class="thumb">
+                                        </td>
+                                        <td><input type="number" (change)="cartClickedNotification()" value="2"
+                                                class="qtyinput" readonly>
+                                        </td>
+                                        <td>Cucumber</td>
+                                        <td>$3</td>
+                                        <td (click)="cartClickedNotification()"><span class="remove"><img
+                                                    class="deleteProductImage" src="https://i.imgur.com/h1ldGRr.png"
+                                                    alt="X"></span></td>
+                                    </tr>
+                                    <tr class="totalPrice">
+                                        <td class="light">Total:</td>
+                                        <td colspan="2">&nbsp;</td>
+                                        <td colspan="2"><span class="thick">$3</span></td>
+                                    </tr>
+                                    <tr class="checkoutRow">
+                                        <td colspan="5" class="checkout">
+                                            <button (click)="cartClickedNotification()" class="cartBtn marginRight">
+                                                Checkout Now
+                                            </button>
+                                            <button (click)="cartClickedNotification()" class="cartBtn">Delete All
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div #cartContainer>
+            <div *ngIf="showAddForm">
+                <app-add-product [categories]="this.categories"></app-add-product>
+            </div>
+            <div *ngIf="productToUpdate">
+                <app-update-product [product]="productToUpdate" [categories]="categories"></app-update-product>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="70%">
+        <div class="containerBackground">
+            <div class="addBtnDiv">
+                <button *ngIf="!showAddForm" (click)="showAddForm = !showAddForm;productToUpdate = undefined"
+                    mat-raised-button>Add Product</button>
+            </div>
+            <div>
+                <input placeholder="Search product" (keyup)="showSearchResults($event)" class="searchInput" type="text"
+                    [(ngModel)]="searchInput">
+            </div>
+            <nav class="slidemenu">
+                <input type="radio" name="slideItem" id="slide-item-0" (click)="showProducts(categories[0]._id,0)"
+                    class="slide-toggle" checked />
+                <label for="slide-item-0" class="category">
+                    <img class="icon" src="assets/images/categories/0.png"><span
+                        *ngIf="categories">{{categories[0].categoryName}}</span>
+                </label>
+                <div *ngFor="let category of categories | slice:1; let i = index" [attr.data-index]="i">
+                    <!-- slide-item 0 already exists so starting from index 1-->
+                    <input type="radio" name="slideItem" id="slide-item-{{i+1}}"
+                        (click)="showProducts(category._id,i+1)" class="slide-toggle" />
+                    <label for="slide-item-{{i+1}}" class="category">
+                        <img class="icon"
+                            src="assets/images/categories/{{i+1}}.png"><span>{{category.categoryName}}</span>
+                    </label>
+                </div>
+
+                <div class="clear"></div>
+
+                <!-- Bar -->
+                <div class="slider">
+                    <div id="bar"></div>
+                </div>
+            </nav>
+            <div>
+                <mat-card class="productCard" *ngFor="let product of products" (click)="updateProduct(product)">
+                    <img mat-card-image src="http://localhost:3000/api/image/get-one-image/{{product.picturePath}}"
+                        alt="Product picture">
+
+                    <mat-card-content class="cardProductContent">
+                        <div class="productDetails">
+                            <p class="productName">{{product.productName}}</p>
+                            <p class="productPrice">
+                                ${{product.price}}
+                                <br>
+                                {{this.shopsService.pricePerUnitOrKg(product.categoryId,categories)}}
+                            </p>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>

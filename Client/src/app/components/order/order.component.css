@@ -1,0 +1,248 @@
+#page {
+    display: block;
+    background: rgb(17 34 51 / 94%);
+    padding: 15px 0;
+    border-bottom-left-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border-bottom-right-radius: 7px;
+}
+
+h1 {
+    font-family: 'Fredoka One', Helvetica, Tahoma, sans-serif;
+    color: #fff;
+    text-shadow: 1px 2px 0 #7184d8;
+    font-size: 3.5em;
+    line-height: 1.1em;
+    padding: 6px 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+#title {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    background-image: linear-gradient(black, limegreen);
+    padding: 10px 0;
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-topleft: 6px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+#title>h1 {
+    padding-top: 25px;
+}
+
+#title>.searchDiv {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#title .searchInput {
+    display: inline-block;
+    width: 7em;
+    height: 1em;
+    padding: 5px;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    margin: auto;
+    outline: none;
+}
+
+.shippingFormTitle {
+    margin-bottom: 0px;
+    font-size: xx-large;
+    padding-bottom: 20px;
+}
+
+.loginHr {
+    height: 2px;
+    background: black;
+    width: 100%;
+    margin: auto;
+}
+
+.shippingDetails {
+    position: relative;
+    margin-top: 1%;
+    background: rgb(17 34 51 / 94%);
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.shoppingCart {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 1%;
+    font-size: 62.5%;
+    line-height: 1;
+    color: #414141;
+}
+
+@media (max-width:1276px) {
+    .shoppingCart {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 62.5%;
+        line-height: 1;
+        color: #414141;
+    }
+}
+
+.mat-form-field {
+    width: 200px!important;
+}
+
+.creditCardLength {
+    margin: 10px;
+}
+
+#downloadReceipt {
+    outline: none;
+    text-decoration: none;
+    color: black;
+}
+
+/* Cart */
+
+#cart {
+    border-collapse: collapse;
+    margin: 0;
+    width: 100%;
+    font-size: 1.2em;
+    color: #444;
+}
+
+.qty, .product>td:nth-child(2) {
+    padding-left: 20px!important;
+}
+
+#cart thead th {
+    padding: 8px 0;
+    font-weight: bold;
+}
+
+#cart thead th.photo {
+    width: 175px;
+}
+
+#cart thead th.qty {
+    width: 45px;
+}
+
+#cart thead th.productName {
+    width: 230px;
+}
+
+#cart thead th.total {
+    width: 130px;
+}
+
+#cart thead th.fifth {
+    width: 20px;
+}
+
+#cart tbody td {
+    text-align: center;
+    margin-top: 4px;
+}
+
+td, th {
+    color: white;
+}
+
+tr.product {
+    height: 65px;
+    line-height: 65px;
+    border-bottom: 1px solid #d7dbe0;
+}
+
+#cart tbody td img.thumb {
+    width: 120px;
+    height: 55px;
+    vertical-align: bottom;
+    margin-bottom: 4px;
+}
+
+tr.totalprice, tr.extracosts {
+    height: 35px;
+    line-height: 35px;
+}
+
+tr.extracosts {
+    background: #e4edf4;
+}
+
+.remove {
+    cursor: pointer;
+    position: relative;
+    right: 12px;
+    top: 5px;
+}
+
+.thick {
+    color: white;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+/** submit btn **/
+
+tr.checkoutrow {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+td.checkout {
+    padding: 12px 0;
+    padding-top: 20px;
+    width: 100%;
+    text-align: right;
+}
+
+.creditCardHint {
+    margin: 1%;
+}
+
+.creditColorWhite {
+    color: white;
+}
+
+/* Back to shop */
+
+.backToShopDiv {
+    transition: .3s;
+    width: 150px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1%;
+    margin-left: 1%;
+    background: rgb(17 34 51 / 94%);
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.backToShopDiv>a {
+    color: white;
+    text-decoration: none;
+}
+
+.backToShopDiv:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.confirmOrderBtn {
+    margin: 4% 0 2% 0;
+}

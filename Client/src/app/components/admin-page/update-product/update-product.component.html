@@ -1,0 +1,38 @@
+<div class="updateProductDiv">
+    <h1 class="updateProductTitle"> Update Product </h1>
+    <br>
+    <mat-form-field class="updateProductNameField">
+        <mat-label>Product name</mat-label>
+        <input id="productNameInput" name="productName" matInput type="text" [(ngModel)]="productName">
+        <br>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="updateCategoryField">
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="this.chosenCategory" [(ngModel)]="chosenCategory" name="chosenCategory">
+            <mat-option *ngFor="let category of categories" ngDefaultControl [(value)]="category.categoryName">
+                {{category.categoryName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="updatePriceField">
+        <mat-label>Price</mat-label>
+        <input id="priceInput" name="price" matInput type="number" [(ngModel)]="price">
+        <br>
+    </mat-form-field>
+    <br>
+    <div class="file-upload-wrapper" [attr.data-text]="addedPicture ? addedPicture : 'Select Picture' ">
+        <input (change)="onFileSelected($event)" name="file-upload-field" type="file" class="file-upload-field"
+            value="">
+    </div>
+    <br>
+    <li>
+        <button class="updateProductBtn btnMarginRight" (click)="updateProduct()" mat-raised-button>
+            Update
+        </button>
+        <button class="updateProductBtn" (click)="close()" mat-raised-button>
+            Close
+        </button>
+    </li>
+</div>

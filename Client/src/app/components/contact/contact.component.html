@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form">
+            <span class="contact100-form-title">
+                Contact us
+            </span>
+
+
+            <div class="wrap-input100 validate-input">
+                <label class="label-input100" for="name">Full name</label>
+                <input id="name" class="input100" type="text" [(ngModel)]="fullName" name="name"
+                    placeholder="Enter your full name..." required>
+                <span class="focus-input100"></span>
+            </div>
+
+
+            <div class="wrap-input100 validate-input">
+                <label class="label-input100" for="email">Email Address</label>
+                <input id="email" class="input100" [(ngModel)]="email" type="text" name="email"
+                    placeholder="Enter your email..." required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100">
+                <div class="label-input100">What do you need?</div>
+                <div>
+                    <div include="form-input-select()">
+                        <select [(ngModel)]="reasonForContacting" required name="reasonForContact" value="gf">
+                            <option value="Prices too high">Prices too high</option>
+                            <option value="I want manager to contact me">I want manager to contact me</option>
+                            <option value="Reporting website problems">Reporting website problems</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+
+                    <div class="dropDownSelect2"></div>
+                </div>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Message is required">
+                <label class="label-input100" for="message">Message</label>
+                <textarea id="message" class="input100" [(ngModel)]="message" name="message"
+                    placeholder="Type your message here..." required></textarea>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <button (click)="sendMessage()" class="contact100-form-btn">
+                    Send
+                </button>
+            </div>
+        </form>
+
+        <div class="contact100-more flex-col-c-m">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="addProductDiv">
+    <h1 class="addProductTitle"> Add Product </h1>
+    <br>
+    <mat-form-field class="addProductNameField">
+        <mat-label>Product name</mat-label>
+        <input id="productNameInput" name="productName" matInput type="text" [(ngModel)]="productName">
+        <br>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="addProductCategoryField" appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="chosenCategory" name="chosenCategory">
+            <mat-option *ngFor="let category of categories" [value]="category" ngDefaultControl>
+                {{category.categoryName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="addProductPriceField">
+        <mat-label>Price</mat-label>
+        <input id="priceInput" name="price" matInput type="number" [(ngModel)]="price">
+        <br>
+    </mat-form-field>
+    <!-- File accepts only jpg,jpeg,png extensions, if selected another, there is validation -->
+    <div class="file-upload-wrapper" [attr.data-text]="addedPicture ? addedPicture : 'Select Picture' ">
+        <input (change)="onFileSelected($event)" name="file-upload-field" type="file" class="file-upload-field" value=""
+            accept=".jpg, .jpeg, .png">
+    </div>
+    <br>
+    <li>
+        <button class="addProductBtn btnMarginRight" (click)="addProduct()" mat-raised-button>
+            Add
+        </button>
+        <button class="addProductBtn" (click)="close()" mat-raised-button>
+            Close
+        </button>
+    </li>
+</div>

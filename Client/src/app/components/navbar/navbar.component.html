@@ -1,0 +1,18 @@
+<header class="header">
+        <img src="/assets/images/navbar-logo.png" class="logo">
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+                <li><a (click)="navigate()">Home</a></li>
+                <li><a routerLink="/contact">Contact</a></li>
+                <li><a routerLink="/about">About</a></li>
+        </ul>
+        <div class="navBarHello">
+                Hello {{firstName || "Guest"}}
+                <img *ngIf="firstName" (click)="signOut()" class="signOutIcon" src="assets/icons/lol.ico">
+        </div>
+</header>
+<!-- <div class="shopsNavBar">
+        <img id="logo" src="" alt="Logo">
+        <button id="contactBtn"> Contact us </button>
+</div> -->

@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="30%">
+        <div class="login">
+            <div class="login-wrap">
+                <div class="login-html" *ngIf="!isLoggedIn">
+                    <h3 class="authTitle">Login</h3>
+                    <div class="login-form">
+                        <div class="sign-in-htm">
+                            <div class="group">
+                                <label class="label">Email</label>
+                                <input type="email" class="input" [(ngModel)]="user.email">
+                            </div>
+                            <div class="group">
+                                <label class="label">Password</label>
+                                <input type="password" class="input" [(ngModel)]="user.password">
+                            </div>
+                            <div class="group signInBtn">
+                                <button type="button" (click)="login()" class="button">Sign in</button>
+                            </div>
+                            <div class="loginHr"></div>
+                            <div class="foot-lnk">
+                                <a routerLink="/register">Don't have account? Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-html" *ngIf="isLoggedIn">
+                    <div class="group">
+                        <p class="loggedMessage"> Successfully logged in</p>
+                        <button (click)="moveToProductsPage()" class="shoppingBtn">
+                            {{cartDateCreated ? "Resume shopping" : "Start Shopping"}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-divs" fxFlex="30%">
+        <img class="logo" src="/assets/images/medal/medal.png">
+        <h3> We are the cheapest shopping online website </h3>
+        <h4> Our award winning: </h4>
+        <h5> Tel-Aviv award winning cheapest website <br> 2015 </h5>
+        <h5> Jerusalem award winning cheapest website <br> 2018 </h5>
+        <h5> Tel-Aviv award winning most trustworthy website <br> 2016 </h5>
+    </div>
+    <div class="login-divs" fxFlex="30%">
+        <div class="websiteDetails">
+            <img class="onlineShopLogo" src="/assets/images/navbar-logo.png">
+            <h4>Available products in our store: {{productsAmount}}</h4>
+            <h4>Number of orders submitted in our store: {{ordersAmount}}</h4>
+            <div class="notification" *ngIf="isLoggedIn">Notification :
+                <p *ngIf="cartDateCreated">You have open cart from:<br> {{cartDateCreated}}<br> Total price:
+                    ${{cartTotalPrice}}
+                </p>
+                <p *ngIf="lastOrderDate">Your last purchase was on:<br> {{lastOrderDate}}</p>
+            </div>
+            <p class="notification" *ngIf="isLoggedIn && !cartDateCreated && !lastOrderDate">Welcome to your first purchase {{firstName}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<app-navbar></app-navbar>
+<h1 class="pageTitle">Online Shop</h1>
+<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+
+    <div [@toggleCartAnimation]="isMenuOpen ? 'open': 'close'" [@moveCartAside]="isCartAtLeft ? 'close': 'open'"
+        (@toggleCartAnimation.done)="animationDone($event)" (@toggleCartAnimation.start)="animationStarts($event)"
+        class="cartContainer" fxFlex="30%">
+        <div>
+            <div class="shoppingCart">
+                <div>
+                    <header id="title">
+                        <h1>Shopping Cart</h1>
+                    </header>
+                    <div id="page">
+                        <table id="cart">
+                            <thead>
+                                <tr>
+                                    <th class="photo">Photo</th>
+                                    <th class="qty">Qty</th>
+                                    <th class="cartProductName">Product</th>
+                                    <th class="total">Total</th>
+                                    <th class="fifth">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="product" *ngFor="let cartProduct of cartProducts">
+                                    <td><img src="http://localhost:3000/api/image/get-one-image/{{cartProduct.picturePath}}"
+                                            class="thumb"></td>
+                                    <td><input type="number" value="{{cartProduct.units}}"
+                                            [(ngModel)]="cartProduct.units" min="0" max="99" class="qtyinput"
+                                            (change)="updateUnits(cartProduct)">
+                                    </td>
+                                    <td>{{cartProduct.productName}}</td>
+                                    <td>${{cartProduct.calculatedPrice}}</td>
+                                    <td (click)="deleteFromCart(cartProduct._id)"><span class="remove"><img
+                                                class="deleteProductImage" src="https://i.imgur.com/h1ldGRr.png"
+                                                alt="X"></span></td>
+                                </tr>
+                                <tr class="totalprice">
+                                    <td class="light">Total:</td>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td colspan="2"><span class="thick">${{totalToPay}}</span></td>
+                                </tr>
+                                <tr class="checkoutrow">
+                                    <td colspan="5" class="checkout">
+                                        <button (click)="checkout()" class="cartBtn marginRight">
+                                            Checkout Now
+                                        </button>
+                                        <button class="cartBtn" (click)="deleteAllCartProducts()">Delete All
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex="70%" [@toggleCartAnimation]="isMenuOpen ? 'makeContainerNormal': 'makeContainerBigger'">
+        <div class="containerBackground">
+            <div class="controlCartDiv">
+                <button mat-button class="cartBtn controlCartBtn"
+                    (click)="toggleMenu()">{{isMenuOpen ? "Minimize Cart" : "Maximize Cart"}}</button>
+                <button mat-button class="cartBtn controlCartBtn" (click)="pushCartToLeft()">
+                    {{isCartAtLeft ? "Push Cart Back" : "Push Cart To Left"}}</button>
+            </div>
+            <div>
+                <input placeholder="Search product" (keyup)="showSearchResults($event)" class="searchInput" type="text"
+                    [(ngModel)]="searchInput">
+            </div>
+            <nav class="slidemenu">
+                <input type="radio" name="slideItem" id="slide-item-0" (click)="showProducts(categories[0]._id,0)"
+                    class="slide-toggle" checked />
+                <label for="slide-item-0" class="category">
+                    <img class="icon" src="assets/images/categories/0.png"><span
+                        *ngIf="categories">{{categories[0].categoryName}}</span>
+                </label>
+                <div *ngFor="let category of categories | slice:1; let i = index" [attr.data-index]="i">
+                    <input type="radio" name="slideItem" id="slide-item-{{i+1}}"
+                        (click)="showProducts(category._id,i+1)" class="slide-toggle" />
+                    <label for="slide-item-{{i+1}}" class="category">
+                        <img class="icon"
+                            src="assets/images/categories/{{i+1}}.png"><span>{{category.categoryName}}</span>
+                    </label>
+                </div>
+
+                <div class="clear"></div>
+
+                <!-- Bar -->
+                <div class="slider">
+                    <div id="bar"></div>
+                </div>
+            </nav>
+            <div>
+                <mat-card class="productCard" *ngFor="let product of products">
+
+                    <img mat-card-image src="http://localhost:3000/api/image/get-one-image/{{product.picturePath}}"
+                        alt="Product picture">
+                    <mat-card-content class="cardProductContent">
+                        <div class="productDetails">
+                            <p class="productName">{{product.productName}}</p>
+                            <p class="productPrice">
+                                ${{product.price}}
+                                <br>
+                                {{this.shopsService.pricePerUnitOrKg(product.categoryId,categories)}}
+                            </p>
+                        </div>
+                        <div class="addSvg" (click)="openDialog(product)">
+                            <img class="addToCart" src="/assets/svg/add-to-cart.svg" mat-button>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                    </mat-card-actions>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>

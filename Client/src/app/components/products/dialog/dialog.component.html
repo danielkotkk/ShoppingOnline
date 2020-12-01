@@ -1,0 +1,16 @@
+<ol>
+    <form>
+        <li>
+            <mat-form-field class="unitsField" appearance="fill">
+                <mat-label class="colorBlack">Units</mat-label>
+                <input id="unitsInput" name="units" matInput type="number" [(ngModel)]="units">
+                <br>
+            </mat-form-field>
+        </li>
+        <li>
+            <button type="submit" (click)="addProductToCart(units)" mat-raised-button>
+                Confirm
+            </button>
+        </li>
+    </form>
+</ol>

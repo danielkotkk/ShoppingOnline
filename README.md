@@ -1,4 +1,4 @@
-#Project created using - AngularJS, NodeJS and MongoDB.
+# Project created using - AngularJS, NodeJS and MongoDB.
 
 # If MongoDB not installed
 1. Install MongoDB from https://www.mongodb.com/try/download/community
